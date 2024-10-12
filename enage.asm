@@ -1,8 +1,6 @@
-;************************
-;   Enage Network DDoS :
-;************************
-
 section .data
+    title db ";************************", 10, ";   Enage Network DDoS :", 10, ";************************", 10, 0
+    title_len equ $ - title
     prompt db "Select protocol (1: UDP, 2: TCP): ", 0
     prompt_len equ $ - prompt
     thread_prompt db "Enter number of threads (1-100): ", 0
@@ -29,6 +27,7 @@ section .data
     user_agent_line db 256 dup(0) ; Buffer for user agent line
     user_agent_count resd 1 ; Number of user agents
     proxy_count resd 1 ; Number of proxies
+
 
 section .bss
     ; No additional bss needed
