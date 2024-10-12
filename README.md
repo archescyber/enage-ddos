@@ -1,8 +1,15 @@
-# Enage DDOS
+# Enage DDOS 
 
 ## Description
 
 Enage Network DDoS is a simulation software that allows users to perform DDoS attacks on target IP addresses using various protocols (UDP and TCP). This software enables users to launch attacks with the number of threads they specify according to their chosen protocol.
+
+
+# Assembly Code Compatibility
+
+The compatibility of assembly code depends on the architecture it was written for. If my code is written for the x86 architecture, it can run on Intel and AMD processors. If it is written for the ARM architecture, it will work on ARM-based devices.
+
+In summary, to determine which processor architecture my code is compatible with, you should consider the compiler used or the writing style. If my code is x86-based, it is compatible with the x86 architecture; if it is ARM-based, it is compatible with the ARM architecture.
 
 ## Features
 
