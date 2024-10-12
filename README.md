@@ -25,7 +25,6 @@ In summary, to determine which processor architecture my code is compatible with
    ```You need to have the following tools installed on your system to run this project:
    - NASM (Netwide Assembler)
    - ld (GNU Linker)
-
 3. **Compiling the Code**:
    ```bash
    nasm -f elf32 -o enage_ddos.o enage_ddos.asm
