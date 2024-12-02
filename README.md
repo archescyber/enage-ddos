@@ -1,46 +1,67 @@
-# Network Attacker 
+# Network Attacker
 
-# Assembly Code Compatibility
-
-The compatibility of assembly code depends on the architecture it was written for. If my code is written for the x86 architecture, it can run on Intel and AMD processors. If it is written for the ARM architecture, it will work on ARM-based devices.
-
-In summary, to determine which processor architecture my code is compatible with, you should consider the compiler used or the writing style. If my code is x86-based, it is compatible with the x86 architecture; if it is ARM-based, it is compatible with the ARM architecture.
+**Network Attacker** is a software tool that allows users to send UDP or TCP packets to a specific target IP address for network testing purposes. The software is designed to perform basic packet sending for network stress testing. However, it is essential to use this tool only for legal and ethical purposes.
 
 ## Features
 
-- **Protocol Selection**: Users can choose between UDP or TCP protocols.
-- **Thread Control**: Users can specify the number of threads from 1 to 100.
-- **Target IP and Port**: Users can input the target IP address and port number.
-- **Proxy Support**: Users can specify a proxy file.
-- **User Agent Support**: Users can specify a user agent file.
-
-## Installation
-
-1. **Required Tools**:
-   ```You need to have the following tools installed on your system to run this project:
-   - NASM (Netwide Assembler)
-   - ld (GNU Linker)
-3. **Compiling the Code**:
-   ```bash
-   nasm -f elf32 -o enage_ddos.o enage_ddos.asm
-   ld -m elf_i386 -s -o enage_ddos enage_ddos.o
-
-4. **Running the Program**:
-   ```./enage_ddos```
+- Supports both UDP and TCP protocols.
+- Allows users to specify target IP address and port.
+- Can utilize proxy and user agent files.
+- Multi-threading support for improved performance.
+- Designed for use in legal testing environments.
 
 ## Usage
 
-When the program starts, follow these steps:
+Follow the steps below to use the software:
 
-`1. Protocol Selection: Choose a protocol based on the prompt "Select protocol (1: UDP, 2: TCP): ".`
+### Requirements
+
+- Linux operating system (this software is designed to work on Linux systems).
+- 32-bit processor assembly code.
+- Tools like `netcat` or other network testing utilities may be helpful.
+
+### Compilation and Running
+
+1. **Compiling the Code:**
+
+   This software is written in Assembly. To compile, use the following commands:
+
+   ```bash
+   nasm -f elf32 -o network_attacker.o network_attacker.asm
+   ld -m elf_i386 -o network_attacker network_attacker.o
+
+## Running the Software:
+
+To run the software:
+
+```./network_attacker```
+
+After running, the software will prompt you for the following information:
+
+Protocol Selection: Choose either UDP or TCP.
+
+Target IP Address: Enter the IP address of the target.
+
+Target Port: Specify the port number for the target.
+
+Number of Threads: Enter the number of threads (1-100).
+
+Proxy File: If you want to use a proxy file, provide its name.
+
+User Agent File: If you want to use a user agent file, provide its name.
 
 
-`2. Thread Count: Enter a number of threads in response to "Enter number of threads (1-100): ".`
+## Configuration
+
+Protocol Selection: You can choose between UDP (Option 1) or TCP (Option 2) for packet sending.
+
+Threads: Specify the number of threads to use for sending packets (1-100).
+
+Target IP and Port: Provide the target IP address and port to which the packets will be sent.
+
+Proxy and User Agent Files: Optionally, specify files for proxies and user agents that will be used during the attack.
 
 
-`3. Target Information: Provide the target IP address and port when prompted.`
+## Disclaimer
 
-
-# Contact
-
-Feel free to contribute to the project by submitting issues or pull requests. All contributions are welcome!   
+Network Attacker is intended for educational and research purposes only. The software should only be used in a controlled and legal environment. Unauthorized use of this tool for malicious purposes is illegal and unethical. The author is not responsible for any damages caused by the misuse of this tool.
